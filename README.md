@@ -11,9 +11,7 @@
 
 ## Live Site
 
-🚀 **Coming Soon**: [https://pblivin0x.github.io/fantasy-football-2025/](https://pblivin0x.github.io/fantasy-football-2025/)
-
-*GitHub Pages deployment pending - enable Pages in repository settings*
+🚀 **[View Live Site](https://pblivin0x.github.io/fantasy-football-2025/)**
 
 ## Setup
 
