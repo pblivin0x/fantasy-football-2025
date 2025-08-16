@@ -1,5 +1,5 @@
 import React from 'react';
-import ReceivingStatsTable from './components/ReceivingStatsTable';
+import ReceivingStatsTableCSV from './components/ReceivingStatsTableCSV';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         
         <div className="bg-gray-900/50 rounded-xl p-6 backdrop-blur-sm">
           <h2 className="text-2xl font-semibold mb-6">2024 NFL Receiving Leaders</h2>
-          <ReceivingStatsTable />
+          <ReceivingStatsTableCSV />
         </div>
       </div>
     </div>
