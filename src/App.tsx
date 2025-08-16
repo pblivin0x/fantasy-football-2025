@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import HeroWithOverlay from './components/HeroWithOverlay';
 import FantasyProsWidget from './components/FantasyProsWidget';
+import FantasyProsDataWidget from './components/FantasyProsDataWidget';
 
 function App() {
   useEffect(() => {
@@ -60,7 +61,7 @@ function App() {
               </div>
               
               <div className="transform hover:scale-[1.02] transition-transform duration-300">
-                <FantasyProsWidget />
+                <FantasyProsDataWidget />
               </div>
             </div>
 

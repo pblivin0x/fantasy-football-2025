@@ -1,12 +1,12 @@
 # 🏈 PB Livin Fantasy Football 2025 🏈
 
 <div align="center">
-  <img src="public/images/hollywoo.png" alt="Hollywoo" width="600">
+  <img src="public/images/hollywoo.png" alt="Hollywoo" width="400">
+  &nbsp;&nbsp;&nbsp;&nbsp;🤝&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="public/images/pblivin-transparent.png" alt="PB Livin" width="150">
   <br>
   <br>
   <h3>🎯 Going Back to Hollywoo 🎯</h3>
-  <br>
-  <img src="public/images/pblivin-transparent.png" alt="PB Livin" width="200">
 </div>
 
 ## Live Site
