@@ -9,6 +9,12 @@
   <img src="public/images/pblivin-transparent.png" alt="PB Livin" width="200">
 </div>
 
+## Live Site
+
+🚀 **Coming Soon**: [https://pblivin0x.github.io/fantasy-football-2025/](https://pblivin0x.github.io/fantasy-football-2025/)
+
+*GitHub Pages deployment pending - enable Pages in repository settings*
+
 ## Setup
 
 ```bash
