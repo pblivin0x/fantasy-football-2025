@@ -1,0 +1,20 @@
+# Treat CSV files as binary to avoid line ending issues
+*.csv binary
+
+# Mark generated files
+public/data/*_Corrected.csv linguist-generated=true
+public/data/fantasy_pros_data.json linguist-generated=true
+
+# Better diffs for data files
+*.csv diff=csv
+*.json diff=json
+
+# Exclude test files from language stats
+scripts/test_*.py linguist-vendored
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary

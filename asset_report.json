@@ -1,0 +1,158 @@
+{
+  "timestamp": "2025-08-16",
+  "total_size_kb": 3045.39,
+  "images": {
+    "count": 3,
+    "total_kb": 2401.43,
+    "files": [
+      {
+        "name": "pblivin-transparent.png",
+        "size_kb": 894.15
+      },
+      {
+        "name": "hollywoo.png",
+        "size_kb": 756.49
+      },
+      {
+        "name": "pblivin.png",
+        "size_kb": 750.79
+      }
+    ]
+  },
+  "data": {
+    "count": 32,
+    "total_kb": 643.96,
+    "files": [
+      {
+        "name": "FantasyPros_Fantasy_Football_RB_2022_Per_Game.csv",
+        "size_kb": 15.16
+      },
+      {
+        "name": "FantasyPros_Fantasy_Football_WR_2024_Totals.csv",
+        "size_kb": 18.52
+      },
+      {
+        "name": "FantasyPros_Fantasy_Football_RB_2024_Per_Game.csv",
+        "size_kb": 13.7
+      },
+      {
+        "name": "FantasyPros_Fantasy_Football_RB_2023_Per_Game.csv",
+        "size_kb": 13.71
+      },
+      {
+        "name": "FantasyPros_Fantasy_Football_RB_2022_Totals.csv",
+        "size_kb": 20.25
+      },
+      {
+        "name": "pff-nfl-regular-receiving-2022.csv",
+        "size_kb": 54.59
+      },
+      {
+        "name": "pff-nfl-regular-receiving-2023.csv",
+        "size_kb": 50.32
+      },
+      {
+        "name": "FantasyPros_Fantasy_Football_WR_2023_Totals.csv",
+        "size_kb": 28.74
+      },
+      {
+        "name": "pff-nfl-regular-receiving-2024.csv",
+        "size_kb": 52.1
+      },
+      {
+        "name": "FantasyPros_Fantasy_Football_RB_2024_Totals.csv",
+        "size_kb": 18.39
+      },
+      {
+        "name": "FantasyPros_WR_2024_Totals_Corrected.csv",
+        "size_kb": 0.62
+      },
+      {
+        "name": "pff-nfl-playoff-receiving-2024.csv",
+        "size_kb": 11.8
+      },
+      {
+        "name": "pff-nfl-playoff-receiving-2023.csv",
+        "size_kb": 11.96
+      },
+      {
+        "name": "pff-nfl-playoff-receiving-2022.csv",
+        "size_kb": 11.59
+      },
+      {
+        "name": "FantasyPros_Fantasy_Football_WR_2022_Totals.csv",
+        "size_kb": 29.22
+      },
+      {
+        "name": "FantasyPros_RB_2024_Totals_Corrected.csv",
+        "size_kb": 0.34
+      },
+      {
+        "name": "pff-nfl-regular-passing-2022.csv",
+        "size_kb": 15.61
+      },
+      {
+        "name": "pff-nfl-playoff-passing-2024.csv",
+        "size_kb": 2.91
+      },
+      {
+        "name": "pff-nfl-regular-rushing-2022.csv",
+        "size_kb": 45.6
+      },
+      {
+        "name": "pff-nfl-playoff-rushing-2024.csv",
+        "size_kb": 9.67
+      },
+      {
+        "name": "pff-nfl-regular-rushing-2023.csv",
+        "size_kb": 42.14
+      },
+      {
+        "name": "FantasyPros_Fantasy_Football_WR_2024_Per_game.csv",
+        "size_kb": 18.52
+      },
+      {
+        "name": "pff-nfl-regular-passing-2023.csv",
+        "size_kb": 15.76
+      },
+      {
+        "name": "FantasyPros_Fantasy_Football_WR_2023_Per_Game.csv",
+        "size_kb": 18.77
+      },
+      {
+        "name": "FantasyPros_Fantasy_Football_RB_2023_Totals.csv",
+        "size_kb": 18.36
+      },
+      {
+        "name": "pff-nfl-playoff-passing-2022.csv",
+        "size_kb": 2.54
+      },
+      {
+        "name": "pff-nfl-regular-passing-2024.csv",
+        "size_kb": 15.16
+      },
+      {
+        "name": "FantasyPros_Fantasy_Football_WR_2022_Per_Game.csv",
+        "size_kb": 19.23
+      },
+      {
+        "name": "pff-nfl-playoff-rushing-2022.csv",
+        "size_kb": 9.44
+      },
+      {
+        "name": "pff-nfl-regular-rushing-2024.csv",
+        "size_kb": 43.35
+      },
+      {
+        "name": "pff-nfl-playoff-rushing-2023.csv",
+        "size_kb": 9.74
+      },
+      {
+        "name": "pff-nfl-playoff-passing-2023.csv",
+        "size_kb": 2.32
+      }
+    ]
+  },
+  "optimization_status": "good",
+  "github_pages_ready": true
+}
