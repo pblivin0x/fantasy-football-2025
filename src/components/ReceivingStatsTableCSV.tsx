@@ -58,7 +58,10 @@ export default function ReceivingStatsTableCSV() {
 
     // Filter by position
     if (positionFilter !== 'ALL') {
-      filtered = filtered.filter(player => player.Pos === positionFilter);
+      filtered = filtered.filter(player => {
+        // Handle multi-position players (e.g., "WR/RB")
+        return player.Pos && player.Pos.includes(positionFilter);
+      });
     }
 
     // Filter by search term
@@ -139,11 +142,14 @@ export default function ReceivingStatsTableCSV() {
             className="px-4 py-2 border rounded-lg bg-white/10 text-white border-gray-600 focus:outline-none focus:border-green-500"
           >
             <option value="ALL">All Positions</option>
-            <option value="WR">Wide Receivers</option>
-            <option value="TE">Tight Ends</option>
-            <option value="RB">Running Backs</option>
-            <option value="FB">Fullbacks</option>
-            <option value="QB">Quarterbacks</option>
+            <option value="WR">Wide Receivers (WR)</option>
+            <option value="TE">Tight Ends (TE)</option>
+            <option value="RB">Running Backs (RB)</option>
+            <option value="FB">Fullbacks (FB)</option>
+            <option value="QB">Quarterbacks (QB)</option>
+            <option value="OL">Offensive Line</option>
+            <option value="LB">Linebackers</option>
+            <option value="DB">Defensive Backs</option>
           </select>
 
           <input

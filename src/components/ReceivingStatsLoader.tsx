@@ -45,13 +45,14 @@ export default function ReceivingStatsLoader({ onDataLoaded }: Props) {
       setLoading(true);
       setError(null);
       
-      const response = await fetch('/data/nfl-receiving-2024-full.csv');
+      // Try the main CSV file first
+      const response = await fetch('/data/nfl-receiving-2024.csv');
       
       if (!response.ok) {
-        // If full file doesn't exist, try the sample file
-        const sampleResponse = await fetch('/data/nfl-receiving-2024.csv');
-        if (sampleResponse.ok) {
-          const text = await sampleResponse.text();
+        // If main file doesn't exist, try the full file
+        const fullResponse = await fetch('/data/nfl-receiving-2024-full.csv');
+        if (fullResponse.ok) {
+          const text = await fullResponse.text();
           parseCSVData(text);
         } else {
           setError('No CSV data file found. Please upload the full dataset.');
@@ -70,13 +71,33 @@ export default function ReceivingStatsLoader({ onDataLoaded }: Props) {
   };
 
   const parseCSVData = (csvText: string) => {
-    Papa.parse(csvText, {
+    // Clean up the CSV text - remove the first header row with "Receiving" labels
+    const lines = csvText.split('\n');
+    
+    // Check if first line contains "Receiving" - if so, skip it
+    let cleanedCSV = csvText;
+    if (lines[0] && lines[0].includes('Receiving')) {
+      // Remove the first line and keep the rest
+      cleanedCSV = lines.slice(1).join('\n');
+    }
+    
+    // Also clean up any "-9999" or "-additional" column headers
+    cleanedCSV = cleanedCSV.replace(/,-9999/g, '').replace(/,-additional/g, '');
+    
+    Papa.parse(cleanedCSV, {
       header: true,
       skipEmptyLines: true,
       complete: (results) => {
-        const validData = results.data.filter((row: any) => 
-          row.Player && row.Player !== 'League Average' && row.Rk && !isNaN(parseInt(row.Rk))
-        );
+        const validData = results.data.filter((row: any) => {
+          // Filter out invalid rows
+          return row.Player && 
+                 row.Player !== 'League Average' && 
+                 row.Rk && 
+                 !isNaN(parseInt(row.Rk)) &&
+                 row.Player !== 'Player'; // In case header row gets duplicated
+        });
+        
+        console.log(`Loaded ${validData.length} players from CSV`);
         onDataLoaded(validData as ReceivingStatsRow[]);
       },
       error: (error) => {
