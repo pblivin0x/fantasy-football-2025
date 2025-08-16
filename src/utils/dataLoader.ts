@@ -98,7 +98,7 @@ export async function loadCSVData(fileName: string): Promise<any[]> {
   }
 }
 
-export function getColumnsByStatType(statType: StatType) {
+export function getColumnsByStatType(statType: StatType): Array<{key: string, label: string, type: 'string' | 'number'}> {
   switch (statType) {
     case 'receiving':
       return [

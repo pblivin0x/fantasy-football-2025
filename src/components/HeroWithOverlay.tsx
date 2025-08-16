@@ -27,7 +27,7 @@ const HeroWithOverlay: React.FC = () => {
         isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
       }`}>
         <img 
-          src="/images/pblivin.png" 
+          src="/images/pblivin-transparent.png" 
           alt="PB Livin Sonic" 
           className="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
         />

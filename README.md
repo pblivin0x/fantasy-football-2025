@@ -6,7 +6,7 @@
   <br>
   <h3>🎯 Going Back to Hollywoo 🎯</h3>
   <br>
-  <img src="public/images/pblivin.png" alt="PB Livin" width="200">
+  <img src="public/images/pblivin-transparent.png" alt="PB Livin" width="200">
 </div>
 
 ## Setup
