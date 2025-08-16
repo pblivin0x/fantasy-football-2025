@@ -1,4 +1,13 @@
-# PB Livin Fantasy Football 2025
+# 🏈 PB Livin Fantasy Football 2025 🏈
+
+<div align="center">
+  <img src="public/images/hollywoo.png" alt="Hollywoo" width="600">
+  <br>
+  <br>
+  <h3>🎯 Going Back to Back 🎯</h3>
+  <br>
+  <img src="public/images/pblivin.png" alt="PB Livin" width="200">
+</div>
 
 ## Setup
 

@@ -1,5 +1,12 @@
 # Project Context for Claude
 
+## GitHub Issues Policy
+**PROACTIVELY CREATE ISSUES** - This is a passion project where we iterate quickly and fearlessly:
+- Create issues for any feature ideas, improvements, or bugs you notice
+- Add comments to existing issues when you have updates or insights
+- Use `gh issue create` liberally to track ideas and TODOs
+- Tag issues appropriately (enhancement, bug, documentation, etc.)
+
 ## CRITICAL: Always Verify These Work
 Before committing ANY changes, verify:
 1. **Hero Image Visible**: The Hollywoo background image MUST be visible
