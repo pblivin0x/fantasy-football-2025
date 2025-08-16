@@ -4,7 +4,7 @@
   <img src="public/images/hollywoo.png" alt="Hollywoo" width="600">
   <br>
   <br>
-  <h3>🎯 Going Back to Back 🎯</h3>
+  <h3>🎯 Going Back to Hollywoo 🎯</h3>
   <br>
   <img src="public/images/pblivin.png" alt="PB Livin" width="200">
 </div>
