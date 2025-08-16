@@ -47,17 +47,31 @@ export async function loadCSVData(fileName: string): Promise<any[]> {
     
     const text = await response.text();
     
-    // Clean up the CSV text - remove the first header row with category labels
+    // Clean up the CSV text
     const lines = text.split('\n');
-    let cleanedCSV = text;
+    let cleanedLines = [...lines];
     
-    // Check if first line contains "Receiving", "Passing", or "Rushing" - if so, skip it
-    if (lines[0] && (lines[0].includes('Receiving') || lines[0].includes('Passing') || lines[0].includes('Rushing'))) {
-      cleanedCSV = lines.slice(1).join('\n');
+    // Remove citation line if present (e.g., "--- When using SR data...")
+    if (cleanedLines[0] && cleanedLines[0].includes('When using SR data')) {
+      cleanedLines = cleanedLines.slice(1);
     }
     
+    // Remove empty lines at the start
+    while (cleanedLines.length > 0 && cleanedLines[0].trim() === '') {
+      cleanedLines = cleanedLines.slice(1);
+    }
+    
+    // Check if first line contains "Receiving", "Passing", or "Rushing" - if so, skip it
+    if (cleanedLines[0] && (cleanedLines[0].includes('Receiving') || cleanedLines[0].includes('Passing') || cleanedLines[0].includes('Rushing'))) {
+      cleanedLines = cleanedLines.slice(1);
+    }
+    
+    let cleanedCSV = cleanedLines.join('\n');
+    
     // Clean up any "-9999" or "-additional" column headers
-    cleanedCSV = cleanedCSV.replace(/,-9999/g, '').replace(/,-additional/g, '');
+    cleanedCSV = cleanedCSV.replace(/,-9999/g, '')
+                           .replace(/,-additional/g, '')
+                           .replace(/,Player-additional/g, '');
     
     return new Promise((resolve, reject) => {
       Papa.parse(cleanedCSV, {
@@ -111,6 +125,7 @@ export function getColumnsByStatType(statType: StatType) {
         { key: 'Team', label: 'Team', type: 'string' },
         { key: 'Age', label: 'Age', type: 'number' },
         { key: 'G', label: 'G', type: 'number' },
+        { key: 'GS', label: 'GS', type: 'number' },
         { key: 'Cmp', label: 'Cmp', type: 'number' },
         { key: 'Att', label: 'Att', type: 'number' },
         { key: 'Cmp%', label: 'Cmp%', type: 'number' },
@@ -120,6 +135,7 @@ export function getColumnsByStatType(statType: StatType) {
         { key: 'Y/A', label: 'Y/A', type: 'number' },
         { key: 'Y/G', label: 'Y/G', type: 'number' },
         { key: 'Rate', label: 'Rate', type: 'number' },
+        { key: 'QBR', label: 'QBR', type: 'number' },
       ];
     case 'rushing':
       return [

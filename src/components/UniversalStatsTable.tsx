@@ -127,26 +127,36 @@ export default function UniversalStatsTable({ data, columns, title }: Props) {
     <div className="w-full">
       {/* Controls */}
       <div className="mb-4 space-y-3">
-        <h3 className="text-xl font-semibold text-white">{title}</h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">{title}</h3>
+          <div className="text-xs text-gray-400 bg-gray-800/50 px-3 py-1 rounded-full">
+            {filteredAndSortedData.length} players
+          </div>
+        </div>
         
         <div className="flex flex-col sm:flex-row gap-3">
-          <input
-            type="text"
-            placeholder="Search player or team..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="px-3 py-2 border rounded-lg bg-white/10 text-white placeholder-gray-400 border-gray-600 focus:outline-none focus:border-green-500 text-sm"
-          />
+          <div className="relative flex-1">
+            <input
+              type="text"
+              placeholder="🔍 Search player or team..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full px-4 py-2.5 pl-10 border rounded-xl bg-gray-800/50 text-white placeholder-gray-400 border-gray-700 focus:outline-none focus:border-green-500 focus:bg-gray-800/70 transition-all text-sm"
+            />
+            <span className="absolute left-3 top-3 text-gray-400">🔍</span>
+          </div>
           
           {columns.some(col => col.key === 'Pos') && positions.length > 0 && (
             <select
               value={positionFilter}
               onChange={(e) => setPositionFilter(e.target.value)}
-              className="px-3 py-2 border rounded-lg bg-white/10 text-white border-gray-600 focus:outline-none focus:border-green-500 text-sm"
+              className="px-4 py-2.5 border rounded-xl bg-gray-800/50 text-white border-gray-700 focus:outline-none focus:border-green-500 focus:bg-gray-800/70 transition-all text-sm font-medium"
             >
-              <option value="ALL">All Positions</option>
+              <option value="ALL">📊 All Positions</option>
               {positions.map(pos => (
-                <option key={pos} value={pos}>{pos}</option>
+                <option key={pos} value={pos}>
+                  {pos === 'QB' ? '🎯 ' : pos === 'RB' ? '🏃 ' : pos === 'WR' ? '🙌 ' : pos === 'TE' ? '💪 ' : ''}{pos}
+                </option>
               ))}
             </select>
           )}
@@ -157,44 +167,55 @@ export default function UniversalStatsTable({ data, columns, title }: Props) {
         </div>
       </div>
 
-      {/* Table */}
-      <div className="overflow-x-auto rounded-lg border border-gray-700">
+      {/* Table with enhanced design */}
+      <div className="overflow-x-auto rounded-xl shadow-2xl border border-gray-700/50">
         <table className="w-full text-xs">
-          <thead className="bg-gray-800 text-gray-300">
+          <thead className="bg-gradient-to-r from-gray-800 to-gray-900 text-gray-300">
             <tr>
               {columns.map(column => (
                 <th
                   key={column.key}
-                  className={`px-2 py-2 text-left cursor-pointer hover:bg-gray-700 ${
-                    column.key === 'Player' ? 'sticky left-0 bg-gray-800 z-10' : ''
-                  }`}
+                  className={`px-3 py-3 text-left cursor-pointer hover:bg-gray-700/50 transition-colors ${
+                    column.key === 'Player' ? 'sticky left-0 bg-gradient-to-r from-gray-800 to-gray-900 z-10' : ''
+                  } ${sortKey === column.key ? 'bg-gray-700/30' : ''}`}
                   onClick={() => handleSort(column.key)}
                 >
-                  {column.label} <SortIcon columnKey={column.key} />
+                  <div className="flex items-center gap-1">
+                    <span className="font-semibold">{column.label}</span>
+                    <SortIcon columnKey={column.key} />
+                  </div>
                 </th>
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-700">
+          <tbody className="divide-y divide-gray-800/50">
             {filteredAndSortedData.map((row, index) => (
               <tr 
                 key={`${row.Player}-${index}`}
-                className={`hover:bg-gray-800/50 transition-colors ${
-                  index % 2 === 0 ? 'bg-gray-900/30' : 'bg-gray-900/10'
+                className={`hover:bg-gradient-to-r hover:from-gray-800/30 hover:to-transparent transition-all ${
+                  index % 2 === 0 ? 'bg-gray-900/20' : 'bg-gray-900/5'
                 }`}
               >
                 {columns.map(column => (
                   <td 
                     key={column.key}
-                    className={`px-2 py-1.5 ${
-                      column.key === 'Player' ? 'font-medium sticky left-0 bg-gray-900/95' : ''
+                    className={`px-3 py-2 ${
+                      column.key === 'Player' 
+                        ? 'font-semibold sticky left-0 bg-gray-900/95 text-white' 
+                        : ''
                     } ${
-                      column.key === 'TD' ? 'text-green-400 font-medium' : ''
+                      column.key === 'TD' 
+                        ? 'text-green-400 font-bold' 
+                        : column.key === 'Int' 
+                        ? 'text-red-400' 
+                        : column.key === 'Yds' 
+                        ? 'text-blue-400 font-medium'
+                        : ''
                     }`}
                   >
                     {formatValue(row[column.key], column)}
                     {column.key === 'Player' && row.Awards && row.Awards !== '' && (
-                      <span className="ml-1 text-xs text-yellow-500">★</span>
+                      <span className="ml-2 text-yellow-400 animate-pulse">⭐</span>
                     )}
                   </td>
                 ))}

@@ -22,6 +22,7 @@ export default function DataDashboard() {
   // Check which files are available on mount
   useEffect(() => {
     checkDataAvailability();
+    console.log('DataDashboard mounted - checking data availability');
   }, []);
 
   // Load data when selections change
@@ -30,18 +31,23 @@ export default function DataDashboard() {
   }, [activeStatType, activeSeasonType, activeYear]);
 
   const checkDataAvailability = async () => {
+    console.log('Checking availability for', availableDataFiles.length, 'files');
     const status = new Map<string, boolean>();
     
     for (const file of availableDataFiles) {
       try {
         const response = await fetch(`/data/${file.fileName}`);
-        status.set(file.fileName, response.ok);
-      } catch {
+        const isAvailable = response.ok;
+        status.set(file.fileName, isAvailable);
+        console.log(`${file.fileName}: ${isAvailable ? '✓' : '✗'}`);
+      } catch (err) {
         status.set(file.fileName, false);
+        console.log(`${file.fileName}: ✗ (error)`, err);
       }
     }
     
     setDataStatus(status);
+    console.log('Data availability check complete:', status.size, 'files checked');
   };
 
   const loadSelectedData = async () => {
@@ -93,57 +99,70 @@ export default function DataDashboard() {
     <div className="w-full">
       {/* Navigation Tabs */}
       <div className="mb-6 space-y-4">
-        {/* Stat Type Selector */}
-        <div className="flex flex-wrap gap-2">
+        {/* Stat Type Selector with enhanced design */}
+        <div className="flex flex-wrap gap-3">
           {(['receiving', 'passing', 'rushing'] as StatType[]).map(type => (
             <button
               key={type}
               onClick={() => setActiveStatType(type)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
+              className={`group flex items-center gap-2 px-5 py-3 rounded-xl font-semibold transition-all transform ${
                 activeStatType === type 
-                  ? 'bg-green-600 text-white shadow-lg' 
-                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                  ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg scale-105' 
+                  : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 hover:scale-102'
               }`}
             >
-              {getStatIcon(type)}
+              <span className={`${activeStatType === type ? 'animate-pulse' : ''}`}>
+                {getStatIcon(type)}
+              </span>
               <span className="capitalize">{type}</span>
+              {activeStatType === type && (
+                <span className="ml-2 px-2 py-0.5 bg-white/20 rounded-full text-xs">Active</span>
+              )}
             </button>
           ))}
         </div>
 
-        {/* Season Type and Year Selector */}
-        <div className="flex flex-wrap gap-2">
-          <div className="flex gap-1 bg-gray-800 rounded-lg p-1">
+        {/* Season Type and Year Selector with enhanced design */}
+        <div className="flex flex-wrap items-center gap-4">
+          <div className="flex gap-1 bg-gray-800/50 backdrop-blur rounded-xl p-1.5 border border-gray-700">
             {(['regular', 'playoff'] as SeasonType[]).map(season => (
               <button
                 key={season}
                 onClick={() => setActiveSeasonType(season)}
-                className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                   activeSeasonType === season 
-                    ? 'bg-blue-600 text-white' 
-                    : 'text-gray-400 hover:text-white'
+                    ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-md' 
+                    : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
                 }`}
               >
-                {season === 'regular' ? 'Regular Season' : 'Playoffs'}
+                {season === 'regular' ? '🏈 Regular Season' : '🏆 Playoffs'}
               </button>
             ))}
           </div>
 
-          <div className="flex gap-1 bg-gray-800 rounded-lg p-1">
+          <div className="flex gap-1 bg-gray-800/50 backdrop-blur rounded-xl p-1.5 border border-gray-700">
             {(['2024', '2023', '2022'] as Year[]).map(year => (
               <button
                 key={year}
                 onClick={() => setActiveYear(year)}
-                className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
+                className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${
                   activeYear === year 
-                    ? 'bg-purple-600 text-white' 
-                    : 'text-gray-400 hover:text-white'
+                    ? 'bg-gradient-to-r from-purple-500 to-pink-600 text-white shadow-md' 
+                    : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
                 }`}
               >
                 {year}
               </button>
             ))}
           </div>
+          
+          {/* Live indicator */}
+          {isDataAvailable && (
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-xs text-green-400 font-medium">Data Loaded</span>
+            </div>
+          )}
         </div>
 
         {/* Data Status Indicator */}
