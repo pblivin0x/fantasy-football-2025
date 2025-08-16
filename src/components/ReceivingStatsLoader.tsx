@@ -45,11 +45,11 @@ export default function ReceivingStatsLoader({ onDataLoaded }: Props) {
       setLoading(true);
       setError(null);
       
-      // Try the main CSV file first
-      const response = await fetch('/data/nfl-receiving-2024.csv');
+      // Try the PFF regular season receiving file
+      const response = await fetch('/data/pff-nfl-regular-receiving-2024.csv');
       
       if (!response.ok) {
-        // If main file doesn't exist, try the full file
+        // Try alternate naming conventions
         const fullResponse = await fetch('/data/nfl-receiving-2024-full.csv');
         if (fullResponse.ok) {
           const text = await fullResponse.text();
